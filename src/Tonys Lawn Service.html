@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tony's Lawn Service & Landscaping — San Antonio, TX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --oak:#18211a;
+  --oak-2:#223024;
+  --moss:#3e5733;
+  --fern:#6f8a52;
+  --cream:#f3f0e7;
+  --stone:#e6e1d3;
+  --line:rgba(24,33,26,.14);
+  --clay:oklch(0.63 0.12 52);
+  --leaf:oklch(0.84 0.13 122);
+  --serif:'Instrument Serif', Georgia, serif;
+  --sans:'Hanken Grotesk', system-ui, sans-serif;
+  --pad:clamp(20px,4.5vw,72px);
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--oak);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--leaf);color:var(--oak)}
+.serif{font-family:var(--serif);font-weight:400;letter-spacing:-.01em}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--clay)}
+.wrap{padding-inline:var(--pad)}
+p{text-wrap:pretty}
+h1,h2,h3{text-wrap:balance}
+
+/* grain */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:200;opacity:.06;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- NAV ---------- */
+.nav{position:fixed;inset:0 0 auto 0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px var(--pad);color:var(--cream);transition:background .5s var(--ease),color .5s,padding .5s var(--ease)}
+.nav.solid{background:rgba(243,240,231,.92);backdrop-filter:blur(14px);color:var(--oak);padding-block:14px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:baseline;gap:12px;line-height:1}
+.brand b{font-family:var(--serif);font-weight:400;font-size:34px;letter-spacing:-.02em}
+.brand span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.75;line-height:1.35}
+.nav ul{display:flex;gap:34px;list-style:none;font-size:14px;font-weight:500}
+.nav ul a{position:relative;padding-block:6px}
+.nav ul a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
+.nav ul a:hover::after{transform:scaleX(1);transform-origin:left}
+.pill{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:12px 20px;font-size:14px;font-weight:600;transition:all .35s var(--ease);white-space:nowrap}
+.pill-leaf{background:var(--leaf);color:var(--oak)}
+.pill-leaf:hover{background:var(--cream)}
+.nav.solid .pill-leaf:hover{background:var(--oak);color:var(--cream)}
+.pill-line{border:1px solid currentColor}
+.pill-line:hover{background:var(--oak);color:var(--cream);border-color:var(--oak)}
+.dot{width:8px;height:8px;border-radius:50%;background:currentColor;display:inline-block}
+.menu-btn{display:none;background:none;border:1px solid currentColor;color:inherit;border-radius:999px;padding:10px 18px;font:600 13px var(--sans);letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;height:100svh;min-height:680px;color:var(--cream);overflow:hidden;background:var(--oak)}
+.hero-img{position:absolute;inset:0;background-position:center 60%;background-size:cover;transform:scale(1.15);animation:heroIn 2.6s var(--ease) forwards}
+@keyframes heroIn{to{transform:scale(1.02)}}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(14,20,15,.55) 0%,rgba(14,20,15,.05) 30%,rgba(14,20,15,.15) 55%,rgba(14,20,15,.82) 100%)}
+.hero-inner{position:relative;z-index:2;height:100%;display:grid;grid-template-rows:1fr auto;padding:0 var(--pad) 40px}
+.hero h1{align-self:end;font-family:var(--serif);font-weight:400;font-size:clamp(56px,10.5vw,184px);line-height:.88;letter-spacing:-.035em;max-width:13ch;padding-bottom:36px}
+.hero h1 em{font-style:italic;color:var(--leaf)}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln>span{display:inline-block;transform:translateY(105%);animation:rise 1.3s var(--ease) forwards}
+.hero h1 .ln:nth-child(2)>span{animation-delay:.12s}
+.hero h1 .ln:nth-child(3)>span{animation-delay:.24s}
+@keyframes rise{to{transform:none}}
+.hero-foot{display:grid;grid-template-columns:1.2fr 1fr auto;gap:40px;align-items:end;border-top:1px solid rgba(243,240,231,.3);padding-top:24px;opacity:0;animation:fade 1s .9s forwards}
+@keyframes fade{to{opacity:1}}
+.hero-foot p{max-width:42ch;font-size:17px;opacity:.9}
+.fave{display:flex;gap:16px;align-items:center}
+.fave img{width:64px;height:64px}
+.fave small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.fave strong{font-weight:500;font-size:16px}
+.scroll-cue{display:flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.scroll-cue i{width:1px;height:46px;background:rgba(243,240,231,.35);position:relative;overflow:hidden}
+.scroll-cue i::after{content:"";position:absolute;left:0;top:-50%;width:1px;height:50%;background:var(--leaf);animation:drip 2s infinite var(--ease)}
+@keyframes drip{to{top:100%}}
+
+/* ---------- INTRO ---------- */
+.intro{padding:clamp(100px,14vw,200px) var(--pad) clamp(80px,10vw,140px);display:grid;grid-template-columns:220px 1fr;gap:40px}
+.intro-text{font-family:var(--serif);font-size:clamp(34px,4.6vw,76px);line-height:1.04;letter-spacing:-.02em;max-width:19ch}
+.intro-text .thumb{display:inline-block;width:1.9em;height:.82em;border-radius:999px;background-size:cover;background-position:center;vertical-align:-.06em;margin-inline:.06em}
+.intro-text em{color:var(--moss)}
+.intro-meta{display:flex;flex-direction:column;justify-content:space-between;gap:30px}
+.intro-sub{grid-column:2;display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:56px;max-width:900px}
+.intro-sub p{font-size:18px;color:#3b463c}
+
+/* ---------- SERVICES ---------- */
+.services{background:var(--oak);color:var(--cream);padding:clamp(90px,10vw,150px) var(--pad);position:relative}
+.sv-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:64px;flex-wrap:wrap}
+.sv-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(52px,7vw,120px);line-height:.9;letter-spacing:-.03em}
+.sv-head h2 em{color:var(--leaf)}
+.sv-head p{max-width:36ch;opacity:.75}
+.sv-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(30px,5vw,90px);align-items:start}
+.sv-list{list-style:none;border-top:1px solid rgba(243,240,231,.18)}
+.sv-item{border-bottom:1px solid rgba(243,240,231,.18);cursor:pointer;position:relative}
+.sv-row{display:grid;grid-template-columns:44px 1fr 30px;align-items:baseline;gap:12px;padding:24px 0;transition:padding .5s var(--ease)}
+.sv-row .n{font-size:12px;letter-spacing:.12em;opacity:.5}
+.sv-row h3{font-family:var(--serif);font-weight:400;font-size:clamp(28px,2.8vw,44px);line-height:1.05;letter-spacing:-.015em;transition:color .4s,transform .5s var(--ease)}
+.sv-row .plus{justify-self:end;width:22px;height:22px;position:relative;opacity:.6;transition:transform .5s var(--ease),opacity .3s}
+.sv-row .plus::before,.sv-row .plus::after{content:"";position:absolute;left:50%;top:50%;background:currentColor;transform:translate(-50%,-50%)}
+.sv-row .plus::before{width:16px;height:1px}.sv-row .plus::after{width:1px;height:16px}
+.sv-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
+.sv-body>div{overflow:hidden}
+.sv-body p{padding:0 0 26px 56px;max-width:52ch;opacity:.78;font-size:16px}
+.sv-body .tags{display:flex;flex-wrap:wrap;gap:8px;padding:0 0 28px 56px}
+.sv-body .tags span{font-size:12px;border:1px solid rgba(243,240,231,.25);border-radius:999px;padding:5px 12px;letter-spacing:.04em}
+.sv-item.on .sv-body{grid-template-rows:1fr}
+.sv-item.on h3{color:var(--leaf);transform:translateX(6px)}
+.sv-item.on .plus{transform:rotate(45deg);opacity:1}
+.sv-item:hover h3{transform:translateX(6px)}
+.sv-stage{position:sticky;top:110px;aspect-ratio:4/5;border-radius:6px;overflow:hidden;background:var(--oak-2)}
+.sv-stage .ph{position:absolute;inset:0;background-size:cover;background-position:center;clip-path:inset(100% 0 0 0);transition:clip-path 1s var(--ease);transform:scale(1.08)}
+.sv-stage .ph.on{clip-path:inset(0 0 0 0);transform:scale(1);transition:clip-path 1s var(--ease),transform 1.8s var(--ease)}
+.sv-stage .cap{position:absolute;left:20px;bottom:18px;right:20px;z-index:3;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream)}
+.sv-stage::after{content:"";position:absolute;inset:auto 0 0 0;height:30%;z-index:2;background:linear-gradient(transparent,rgba(14,20,15,.6))}
+
+/* ---------- MARQUEE ---------- */
+.marquee{background:var(--leaf);color:var(--oak);overflow:hidden;padding:22px 0;border-block:1px solid var(--oak)}
+.mq-track{display:flex;width:max-content;animation:mq 38s linear infinite}
+.mq-track span{font-family:var(--serif);font-size:clamp(30px,3.4vw,52px);line-height:1;padding-inline:28px;display:flex;align-items:center;gap:56px;white-space:nowrap}
+.mq-track span::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--oak)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- WORK ---------- */
+.work{padding:clamp(100px,12vw,170px) 0 clamp(80px,10vw,140px)}
+.work-head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:30px;margin-bottom:56px}
+.work-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(48px,6.4vw,108px);line-height:.92;letter-spacing:-.03em;max-width:12ch}
+.work-head h2 em{color:var(--moss)}
+.ctrls{display:flex;gap:10px}
+.ctrls button{width:56px;height:56px;border-radius:50%;border:1px solid var(--oak);background:none;cursor:pointer;font-size:20px;color:var(--oak);transition:all .3s}
+.ctrls button:hover{background:var(--oak);color:var(--cream)}
+.strip{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--pad) 10px;scrollbar-width:none;cursor:grab}
+.strip::-webkit-scrollbar{display:none}
+.strip.drag{cursor:grabbing;scroll-snap-type:none}
+.card{flex:0 0 auto;scroll-snap-align:start;width:clamp(280px,34vw,520px);user-select:none}
+.card.tall{width:clamp(240px,24vw,380px)}
+.card .im{aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:var(--stone)}
+.card.tall .im{aspect-ratio:3/4}
+.card.wide{width:clamp(320px,48vw,760px)}
+.card.wide .im{aspect-ratio:16/9}
+.card .im img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease);pointer-events:none}
+.card:hover .im img{transform:scale(1.05)}
+.card .meta{display:flex;justify-content:space-between;gap:20px;padding-top:16px;font-size:14px}
+.card .meta b{font-weight:500}
+.card .meta span{opacity:.6;text-align:right}
+.card.tall .im,.card.wide .im{height:auto}
+.strip .card:nth-child(even){margin-top:60px}
+
+/* ---------- RECOGNITION ---------- */
+.fav{background:var(--stone);padding:clamp(90px,10vw,150px) var(--pad);display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:center;position:relative;overflow:hidden}
+.fav-big{font-family:var(--serif);font-size:clamp(150px,22vw,360px);line-height:.78;letter-spacing:-.05em;color:var(--moss)}
+.fav-big sup{font-size:.22em;letter-spacing:0;vertical-align:top;margin-left:.1em;color:var(--oak);font-family:var(--sans);font-weight:500;line-height:1.3;display:inline-block;max-width:9ch}
+.fav h2{font-family:var(--serif);font-weight:400;font-size:clamp(36px,4vw,60px);line-height:1;letter-spacing:-.02em;margin:22px 0 22px}
+.years{display:flex;gap:10px;margin-top:34px;flex-wrap:wrap}
+.years span{border:1px solid var(--oak);border-radius:999px;padding:10px 20px;font-weight:500;font-size:15px;display:flex;align-items:center;gap:10px}
+.years span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--clay)}
+.fav-badges{display:flex;gap:8px;margin-top:40px}
+.fav-badges img{width:58px;height:58px}
+
+/* ---------- VOICES ---------- */
+.voices{padding:clamp(100px,12vw,180px) var(--pad);display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,110px)}
+.quote{font-family:var(--serif);font-size:clamp(32px,3.6vw,58px);line-height:1.08;letter-spacing:-.015em}
+.quote::before{content:"“";display:block;font-size:2.4em;line-height:.6;color:var(--clay);margin-bottom:10px}
+.who{margin-top:30px;display:flex;gap:16px;align-items:center;font-size:14px}
+.who i{width:44px;height:44px;border-radius:50%;background:var(--moss);color:var(--cream);display:grid;place-items:center;font-style:normal;font-weight:600;font-size:13px}
+.who small{display:block;opacity:.6}
+.said h3{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;margin-bottom:26px;opacity:.7}
+.said ul{list-style:none;border-top:1px solid var(--line)}
+.said li{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);font-family:var(--serif);font-size:clamp(24px,2.2vw,34px);line-height:1.1;transition:padding .4s var(--ease),color .3s}
+.said li:hover{padding-left:12px;color:var(--moss)}
+.said li small{font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.5}
+.said .src{margin-top:22px;font-size:13px;opacity:.6}
+.said .src a{text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- TONY ---------- */
+.tony{position:relative;color:var(--cream);min-height:92vh;display:grid;align-items:end;overflow:hidden}
+.tony-bg{position:absolute;inset:-10% 0;background-position:center;background-size:cover;will-change:transform}
+.tony::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(14,20,15,.88) 0%,rgba(14,20,15,.55) 50%,rgba(14,20,15,.1) 100%)}
+.tony-inner{position:relative;z-index:2;padding:clamp(80px,10vw,140px) var(--pad);max-width:900px}
+.tony blockquote{font-family:var(--serif);font-size:clamp(34px,4.2vw,66px);line-height:1.04;letter-spacing:-.02em;margin:26px 0 30px}
+.tony blockquote em{color:var(--leaf)}
+.tony .sig{font-family:var(--serif);font-style:italic;font-size:30px}
+.tony .sig small{display:block;font-family:var(--sans);font-style:normal;font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.7;margin-top:4px}
+
+/* ---------- PROCESS ---------- */
+.process{padding:clamp(100px,12vw,170px) var(--pad)}
+.process-head{display:grid;grid-template-columns:220px 1fr;gap:40px;margin-bottom:70px}
+.process-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(46px,5.6vw,92px);line-height:.94;letter-spacing:-.03em;max-width:14ch}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--oak)}
+.step{padding:28px 28px 10px 0;border-right:1px solid var(--line);margin-right:28px}
+.step:last-child{border-right:0;margin-right:0}
+.step .k{font-family:var(--serif);font-size:72px;line-height:1;color:var(--clay)}
+.step h3{font-weight:600;font-size:19px;margin:26px 0 10px}
+.step p{font-size:15.5px;color:#4a554b;max-width:30ch}
+
+/* ---------- CONTACT ---------- */
+.contact{background:var(--oak);color:var(--cream);padding:clamp(90px,10vw,150px) var(--pad);display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,120px)}
+.contact h2{font-family:var(--serif);font-weight:400;font-size:clamp(56px,7.4vw,128px);line-height:.88;letter-spacing:-.035em}
+.contact h2 em{color:var(--leaf)}
+.phone{display:block;font-family:var(--serif);font-size:clamp(40px,4.8vw,78px);letter-spacing:-.02em;margin:46px 0 8px;line-height:1;transition:color .3s}
+.phone:hover{color:var(--leaf)}
+.c-lines{display:grid;gap:4px;font-size:16px;opacity:.8}
+.c-lines a{text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(243,240,231,.35)}
+.c-note{margin-top:30px;font-size:14px;opacity:.6;max-width:40ch}
+form{display:grid;gap:0;align-content:start}
+.f{border-bottom:1px solid rgba(243,240,231,.25);padding:18px 0 12px;position:relative}
+.f label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;display:block;margin-bottom:6px}
+.f input,.f textarea{width:100%;background:none;border:0;outline:0;color:var(--cream);font:400 21px var(--sans);resize:none}
+.f input::placeholder,.f textarea::placeholder{color:rgba(243,240,231,.3)}
+.f:focus-within{border-color:var(--leaf)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:6px 0 4px}
+.chips input{display:none}
+.chips label{margin:0;opacity:1;letter-spacing:.02em;text-transform:none;font-size:14px;border:1px solid rgba(243,240,231,.3);border-radius:999px;padding:8px 15px;cursor:pointer;transition:all .25s}
+.chips input:checked+label{background:var(--leaf);color:var(--oak);border-color:var(--leaf)}
+.f-actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap;align-items:center}
+.f-actions button{border:0;cursor:pointer;font-family:var(--sans)}
+.f-actions .pill-line{background:none;color:var(--cream)}
+.f-actions .pill-line:hover{background:var(--cream);color:var(--oak);border-color:var(--cream)}
+.f-msg{font-size:14px;opacity:.7;margin-top:14px;min-height:20px}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--oak);color:var(--cream);padding:0 var(--pad) 30px;overflow:hidden}
+.foot-top{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;padding:56px 0;border-top:1px solid rgba(243,240,231,.18);font-size:15px}
+.foot-top h4{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;opacity:.55;margin-bottom:14px}
+.foot-top a{display:block;opacity:.85;padding:2px 0}
+.foot-top a:hover{color:var(--leaf)}
+.wordmark{font-family:var(--serif);font-size:clamp(90px,23vw,400px);line-height:.78;letter-spacing:-.05em;white-space:nowrap;color:var(--oak-2);text-shadow:0 0 0 transparent;-webkit-text-stroke:1px rgba(243,240,231,.14);margin-top:10px}
+.foot-bot{display:flex;justify-content:space-between;font-size:13px;opacity:.5;padding-top:24px;gap:20px;flex-wrap:wrap}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(40px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+
+/* mobile menu */
+.sheet{position:fixed;inset:0;z-index:150;background:var(--oak);color:var(--cream);padding:24px var(--pad);display:flex;flex-direction:column;clip-path:inset(0 0 100% 0);transition:clip-path .8s var(--ease)}
+.sheet.open{clip-path:inset(0 0 0 0)}
+.sheet-top{display:flex;justify-content:space-between;align-items:center}
+.sheet nav{margin-top:auto;display:grid}
+.sheet nav a{font-family:var(--serif);font-size:clamp(48px,12vw,84px);line-height:1.05;border-bottom:1px solid rgba(243,240,231,.15);padding:6px 0}
+.sheet .pill{margin-top:30px;align-self:flex-start}
+
+@media (max-width:980px){
+  .nav ul,.nav .pill{display:none}
+  .menu-btn{display:block}
+  .hero-foot{grid-template-columns:1fr;gap:22px}
+  .scroll-cue{display:none}
+  .intro,.process-head{grid-template-columns:1fr}
+  .intro-sub{grid-column:1;grid-template-columns:1fr;margin-top:30px}
+  .sv-grid{grid-template-columns:1fr}
+  .sv-stage{position:relative;top:0;aspect-ratio:4/3;order:-1}
+  .fav,.voices,.contact{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr;row-gap:30px}
+  .step:nth-child(2){border-right:0;margin-right:0}
+  .foot-top{grid-template-columns:1fr 1fr}
+  .work-head{grid-template-columns:1fr}
+  .strip .card:nth-child(even){margin-top:0}
+}
+@media (max-width:560px){
+  .steps{grid-template-columns:1fr}.step{border-right:0;margin-right:0}
+  .brand span{display:none}
+}
+</style>
+<meta name="ext-resource-dependency" content="../img/backyard-lawn.jpg" data-resource-id="backyardLawn" />
+<meta name="ext-resource-dependency" content="../img/oak-bed.jpg" data-resource-id="oakBed" />
+<meta name="ext-resource-dependency" content="../img/sod-lawn.jpg" data-resource-id="sodLawn" />
+<meta name="ext-resource-dependency" content="../img/firepit.jpg" data-resource-id="firepit" />
+<meta name="ext-resource-dependency" content="../img/rock-border.jpg" data-resource-id="rockBorder" />
+<meta name="ext-resource-dependency" content="../img/hedge.jpg" data-resource-id="hedge" />
+<meta name="ext-resource-dependency" content="../img/fence-tall.jpg" data-resource-id="fenceTall" />
+<template id="__bundler_thumbnail" data-bg-color="#18211a"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#18211a"/><circle cx="50" cy="50" r="6" fill="#c5dc7a"/></svg></template>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="#top" class="brand"><b>Tony's</b><span>Lawn Service<br>& Landscaping</span></a>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Our Work</a></li>
+    <li><a href="#neighbors">Neighbors</a></li>
+    <li><a href="#about">About Tony</a></li>
+  </ul>
+  <a href="#quote" class="pill pill-leaf"><span class="dot"></span>Free Quote</a>
+  <button class="menu-btn" id="menuBtn">Menu</button>
+</header>
+
+<div class="sheet" id="sheet">
+  <div class="sheet-top">
+    <a href="#top" class="brand"><b>Tony's</b></a>
+    <button class="menu-btn" id="closeBtn" style="display:block">Close</button>
+  </div>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#work">Our Work</a>
+    <a href="#neighbors">Neighbors</a>
+    <a href="#about">About Tony</a>
+    <a href="#quote">Free Quote</a>
+  </nav>
+  <a href="tel:2103474683" class="pill pill-leaf">Call or text 210-347-4683</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top" data-screen-label="Hero">
+  <div class="hero-img" id="heroImg" data-bg="backyardLawn"></div>
+  <div class="hero-inner">
+    <h1>
+      <span class="ln"><span>Yards worth</span></span>
+      <span class="ln"><span>coming <em>home</em></span></span>
+      <span class="ln"><span>to.</span></span>
+    </h1>
+    <div class="hero-foot">
+      <p>Lawn care, tree trimming and landscaping for San Antonio homes, with Tony Martinez on every job, from the first walk-through to the final check-in.</p>
+      <div class="fave">
+        <img src="../img/fave-1.svg" alt="Nextdoor Fave award">
+        <div><small>Nextdoor Neighborhood Favorite</small><strong>Voted in 82 San Antonio neighborhoods</strong></div>
+      </div>
+      <a href="#intro" class="scroll-cue"><i></i>Scroll</a>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro" id="intro" data-screen-label="Intro">
+  <div class="intro-meta rv">
+    <span class="eyebrow">San Antonio, Texas</span>
+  </div>
+  <div>
+    <p class="intro-text rv">
+      Healthy lawns <span class="thumb" data-bg="sodLawn"></span>, shaped hedges and big live oaks <span class="thumb" data-bg="oakBed"></span> pruned with care. <em>Outdoor spaces</em> you'll actually want to <span class="thumb" data-bg="firepit"></span> spend time in.
+    </p>
+    <div class="intro-sub">
+      <p class="rv d1">Tony's Lawn Service is a hands-on, local outfit. You call or text, Tony comes out to look at the property, and you get a free quote with no runaround.</p>
+      <p class="rv d2">Neighbors keep recommending us for the same reasons: excellent lawn care, top-notch tree trimming, reasonable rates and quick response times.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services" data-screen-label="Services">
+  <div class="sv-head">
+    <h2 class="rv">What we<br><em>take care of</em></h2>
+    <p class="rv d1">From the weekly mow to a complete backyard refresh, one crew handles all of it.</p>
+  </div>
+  <div class="sv-grid">
+    <ul class="sv-list" id="svList">
+      <li class="sv-item on" data-img="backyardLawn" data-cap="Backyard lawn &amp; beds">
+        <div class="sv-row"><span class="n">01</span><h3>Lawn Care &amp; Mowing</h3><span class="plus"></span></div>
+        <div class="sv-body"><div><p>Regular mowing, edging and clean-up that keeps your lawn even, healthy and sharp all season.</p><div class="tags"><span>Mowing</span><span>Edging</span><span>Clean-up</span></div></div></div>
+      </li>
+      <li class="sv-item" data-img="oakBed" data-cap="Live oak &amp; ground-cover bed">
+        <div class="sv-row"><span class="n">02</span><h3>Tree Trimming &amp; Canopy Work</h3><span class="plus"></span></div>
+        <div class="sv-body"><div><p>Careful trimming and canopy shaping for large shade trees, plus removals when a tree has to go. Neighbors single out our canopy work on big trees.</p><div class="tags"><span>Trimming</span><span>Canopy shaping</span><span>Removal quotes</span></div></div></div>
+      </li>
+      <li class="sv-item" data-img="sodLawn" data-cap="New grass installation">
+        <div class="sv-row"><span class="n">03</span><h3>Grass &amp; Sod Installation</h3><span class="plus"></span></div>
+        <div class="sv-body"><div><p>New turf installed properly, including zoysia, with follow-up after the job to make sure it takes.</p><div class="tags"><span>Zoysia</span><span>Sod</span><span>Follow-up</span></div></div></div>
+      </li>
+      <li class="sv-item" data-img="rockBorder" data-cap="River-rock bed with steel edging">
+        <div class="sv-row"><span class="n">04</span><h3>Landscape Beds &amp; Rock Borders</h3><span class="plus"></span></div>
+        <div class="sv-body"><div><p>Clean edging, river rock, mulch beds and plantings that give the yard a defined, finished look.</p><div class="tags"><span>Edging</span><span>River rock</span><span>Mulch</span><span>Plantings</span></div></div></div>
+      </li>
+      <li class="sv-item" data-img="hedge" data-cap="Hedge shaping">
+        <div class="sv-row"><span class="n">05</span><h3>Hedge &amp; Shrub Shaping</h3><span class="plus"></span></div>
+        <div class="sv-body"><div><p>Tidy, sculpted hedges and shrubs that frame the house instead of swallowing it.</p><div class="tags"><span>Hedges</span><span>Shrubs</span><span>Seasonal trims</span></div></div></div>
+      </li>
+      <li class="sv-item" data-img="fenceTall" data-cap="New privacy fence">
+        <div class="sv-row"><span class="n">06</span><h3>Fences, Decks &amp; Hardscape</h3><span class="plus"></span></div>
+        <div class="sv-body"><div><p>New privacy fences, deck renovations and stairs, plus patio and fire-pit areas to finish off the backyard.</p><div class="tags"><span>Fencing</span><span>Deck stairs</span><span>Patios</span><span>Fire pits</span></div></div></div>
+      </li>
+    </ul>
+    <div class="sv-stage" id="svStage">
+      <div class="cap"><span id="svCap">Backyard lawn &amp; beds</span><span id="svNum">01 / 06</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track">
+    <span>Lawn care</span><span>Tree trimming</span><span>Landscaping</span><span>Zoysia installs</span><span>Hedges</span><span>Fences &amp; decks</span><span>Free quotes</span>
+    <span>Lawn care</span><span>Tree trimming</span><span>Landscaping</span><span>Zoysia installs</span><span>Hedges</span><span>Fences &amp; decks</span><span>Free quotes</span>
+  </div>
+</div>
+
+<!-- WORK -->
+<section class="work" id="work" data-screen-label="Work">
+  <div class="work-head wrap">
+    <div>
+      <span class="eyebrow rv">Recent projects</span>
+      <h2 class="rv d1" style="margin-top:22px">Real yards, <em>right here</em> in San Antonio.</h2>
+    </div>
+    <div class="ctrls rv d2"><button id="prev" aria-label="Previous">←</button><button id="next" aria-label="Next">→</button></div>
+  </div>
+  <div class="strip" id="strip">
+    <figure class="card wide"><div class="im"><img src="../img/backyard-shrubs.jpg" alt="Backyard with sculpted shrubs and river rock"></div><figcaption class="meta"><b>Backyard lawn &amp; sculpted shrubs</b><span>Landscaping</span></figcaption></figure>
+    <figure class="card tall"><div class="im"><img src="../img/rock-border.jpg" alt="River rock bed with curved edging"></div><figcaption class="meta"><b>Curved river-rock bed</b><span>Beds &amp; borders</span></figcaption></figure>
+    <figure class="card"><div class="im"><img src="../img/oak-bed.jpg" alt="Live oak with ground-cover ring"></div><figcaption class="meta"><b>Live oak ground-cover ring</b><span>Trees</span></figcaption></figure>
+    <figure class="card"><div class="im"><img src="../img/front-bed.jpg" alt="Front yard shrub bed"></div><figcaption class="meta"><b>Front-yard shrub bed</b><span>Plantings</span></figcaption></figure>
+    <figure class="card tall"><div class="im"><img src="../img/fence-tall.jpg" alt="New wooden privacy fence"></div><figcaption class="meta"><b>New privacy fence</b><span>Fencing</span></figcaption></figure>
+    <figure class="card wide"><div class="im"><img src="../img/fence-build.jpg" alt="Fence under construction"></div><figcaption class="meta"><b>Fence build in progress</b><span>Fencing</span></figcaption></figure>
+    <figure class="card"><div class="im"><img src="../img/firepit.jpg" alt="Fire pit and patio area"></div><figcaption class="meta"><b>Fire pit &amp; paver patio</b><span>Hardscape</span></figcaption></figure>
+    <figure class="card"><div class="im"><img src="../img/hedge.jpg" alt="Trimmed hedge"></div><figcaption class="meta"><b>Front hedge shaping</b><span>Hedges</span></figcaption></figure>
+    <figure class="card"><div class="im"><img src="../img/sod-lawn.jpg" alt="Fresh lawn"></div><figcaption class="meta"><b>Fresh backyard turf</b><span>Grass</span></figcaption></figure>
+  </div>
+</section>
+
+<!-- RECOGNITION -->
+<section class="fav" data-screen-label="Recognition">
+  <div class="rv">
+    <div class="fav-big">82<sup>neighbor&shy;hoods</sup></div>
+  </div>
+  <div>
+    <span class="eyebrow rv">Nextdoor Neighborhood Favorite</span>
+    <h2 class="rv d1">Recommended by neighbors across 82 San Antonio neighborhoods.</h2>
+    <p class="rv d2" style="max-width:46ch;color:#3b463c">The Fave awards are voted on by local residents on Nextdoor. Tony's Lawn Service has won four years in a row.</p>
+    <div class="years rv d3"><span>2022</span><span>2023</span><span>2024</span><span>2025</span></div>
+  </div>
+</section>
+
+<!-- VOICES -->
+<section class="voices" id="neighbors" data-screen-label="Neighbors">
+  <div class="rv">
+    <span class="eyebrow">From the neighborhood</span>
+    <p class="quote" style="margin-top:34px">I had Tony install zoysia grass in April and he was reasonable and very knowledgeable. In fact he still checks regularly to see if I am having any issues.</p>
+    <div class="who"><i>P.H.</i><div>Verified neighbor<small>San Antonio, TX · via Nextdoor</small></div></div>
+  </div>
+  <div class="said rv d1">
+    <h3>What neighbors mention most</h3>
+    <ul>
+      <li>Excellent lawn care <small>Lawns</small></li>
+      <li>Top-notch tree trimming <small>Trees</small></li>
+      <li>Beautiful canopy work on large trees <small>Trees</small></li>
+      <li>Reasonable, fair rates <small>Value</small></li>
+      <li>Quick response times <small>Service</small></li>
+      <li>Deck stairs done right <small>Builds</small></li>
+    </ul>
+    <p class="src">Summarized from verified neighbor recommendations on <a href="https://nextdoor.com/pages/tonys-lawn-service-and-tree-trimming-san-antonio-tx/" target="_blank" rel="noopener">Nextdoor</a>.</p>
+  </div>
+</section>
+
+<!-- TONY -->
+<section class="tony" id="about" data-screen-label="About Tony">
+  <div class="tony-bg" id="tonyBg" data-bg="oakBed"></div>
+  <div class="tony-inner">
+    <span class="eyebrow rv" style="color:var(--cream)">A note from Tony</span>
+    <blockquote class="rv d1">“Sending you a blessing and my continued <em>appreciation</em> for your support and great recommendations.”</blockquote>
+    <div class="sig rv d2">Antonio “Tony” Martinez<small>Owner · Tony's Lawn Service</small></div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" data-screen-label="Process">
+  <div class="process-head">
+    <span class="eyebrow rv">How it works</span>
+    <h2 class="rv d1">Simple, personal and done right.</h2>
+  </div>
+  <div class="steps">
+    <div class="step rv"><div class="k">i.</div><h3>Call or text Tony</h3><p>Reach Tony directly at 210-347-4683. If he misses the call, leave a message or send a text.</p></div>
+    <div class="step rv d1"><div class="k">ii.</div><h3>He stops by</h3><p>Tony comes out to walk the property and talk through what you have in mind.</p></div>
+    <div class="step rv d2"><div class="k">iii.</div><h3>Free quote</h3><p>You get a clear, reasonable price before any work starts.</p></div>
+    <div class="step rv d3"><div class="k">iv.</div><h3>Work &amp; follow-up</h3><p>The job gets done properly, and Tony checks back to make sure everything is holding up.</p></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="quote" data-screen-label="Quote">
+  <div>
+    <h2 class="rv">Let's get your yard <em>looking right.</em></h2>
+    <a href="tel:2103474683" class="phone rv d1">210-347-4683</a>
+    <div class="c-lines rv d2">
+      <span>Call or text, and leave a message if Tony's out on a job.</span>
+      <a href="/cdn-cgi/l/email-protection#a1d5cecfd89091c8d2c0c3c4cde1c6ccc0c8cd8fc2cecc"><span class="__cf_email__" data-cfemail="b2c6dddccb8382dbc1d3d0d7def2d5dfd3dbde9cd1dddf">[email&#160;protected]</span></a>
+      <span>Serving San Antonio, Texas</span>
+    </div>
+  </div>
+  <form id="qForm" class="rv d1">
+    <div class="f"><label for="fn">Your name</label><input id="fn" name="name" placeholder="First &amp; last name" required></div>
+    <div class="f"><label for="fp">Phone</label><input id="fp" name="phone" type="tel" placeholder="(210) 000-0000" required></div>
+    <div class="f"><label for="fa">Neighborhood or address</label><input id="fa" name="addr" placeholder="Where's the yard?"></div>
+    <div class="f"><label>What do you need?</label>
+      <div class="chips">
+        <input type="checkbox" id="c1" value="Lawn care"><label for="c1">Lawn care</label>
+        <input type="checkbox" id="c2" value="Tree trimming"><label for="c2">Tree trimming</label>
+        <input type="checkbox" id="c3" value="Grass / sod"><label for="c3">Grass / sod</label>
+        <input type="checkbox" id="c4" value="Beds & borders"><label for="c4">Beds &amp; borders</label>
+        <input type="checkbox" id="c5" value="Hedges"><label for="c5">Hedges</label>
+        <input type="checkbox" id="c6" value="Fence / deck"><label for="c6">Fence / deck</label>
+      </div>
+    </div>
+    <div class="f"><label for="fm">Tell Tony about the project</label><textarea id="fm" name="msg" rows="3" placeholder="A few details help"></textarea></div>
+    <div class="f-actions">
+      <button type="submit" class="pill pill-leaf"><span class="dot"></span>Send by email</button>
+      <button type="button" class="pill pill-line" id="smsBtn">Send as text</button>
+    </div>
+    <p class="f-msg" id="fMsg"></p>
+  </form>
+</section>
+
+<footer>
+  <div class="foot-top">
+    <div><h4>Tony's Lawn Service</h4><span style="opacity:.85">Lawn Service &amp; Landscaping<br>San Antonio, Texas</span></div>
+    <div><h4>Contact</h4><a href="tel:2103474683">210-347-4683</a><a href="/cdn-cgi/l/email-protection#e79388899ed6d78e948685828ba7808a868e8bc984888a"><span class="__cf_email__" data-cfemail="92e6fdfceba3a2fbe1f3f0f7fed2f5fff3fbfebcf1fdff">[email&#160;protected]</span></a></div>
+    <div><h4>Explore</h4><a href="#services">Services</a><a href="#work">Our Work</a><a href="#about">About Tony</a></div>
+    <div><h4>Follow</h4><a href="https://www.facebook.com/tonyslawnservice210" target="_blank" rel="noopener">Facebook ↗</a><a href="https://nextdoor.com/pages/tonys-lawn-service-and-tree-trimming-san-antonio-tx/" target="_blank" rel="noopener">Nextdoor ↗</a></div>
+  </div>
+  <div class="wordmark">Tony's Lawn</div>
+  <div class="foot-bot"><span>© <span id="yr"></span> Tony's Lawn Service &amp; Landscaping</span><span>Thank you for your business.</span></div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(()=>{
+  const R=window.__resources||{};const P={"backyardLawn":"backyard-lawn.jpg","oakBed":"oak-bed.jpg","sodLawn":"sod-lawn.jpg","firepit":"firepit.jpg","rockBorder":"rock-border.jpg","hedge":"hedge.jpg","fenceTall":"fence-tall.jpg"};const src=k=>R[k]||('../img/'+P[k]);
+  document.querySelectorAll('[data-bg]').forEach(el=>el.style.backgroundImage=`url(${src(el.dataset.bg)})`);
+  // nav
+  const nav=document.getElementById('nav');
+  const onScroll=()=>{
+    nav.classList.toggle('solid',scrollY>innerHeight*.75);
+    const h=document.getElementById('heroImg'); if(scrollY<innerHeight) h.style.translate=`0 ${scrollY*.25}px`;
+    const t=document.getElementById('tonyBg'),r=t.parentElement.getBoundingClientRect();
+    if(r.top<innerHeight&&r.bottom>0) t.style.transform=`translateY(${(r.top/innerHeight)*-60}px)`;
+  };
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  // menu
+  const sheet=document.getElementById('sheet');
+  document.getElementById('menuBtn').onclick=()=>sheet.classList.add('open');
+  document.getElementById('closeBtn').onclick=()=>sheet.classList.remove('open');
+  sheet.querySelectorAll('nav a').forEach(a=>a.onclick=()=>sheet.classList.remove('open'));
+
+  // reveal
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+  // services
+  const items=[...document.querySelectorAll('.sv-item')],stage=document.getElementById('svStage');
+  const phs=items.map((it,i)=>{const d=document.createElement('div');d.className='ph'+(i===0?' on':'');d.style.backgroundImage=`url(${src(it.dataset.img)})`;stage.prepend(d);return d});
+  phs.forEach((p,i)=>p.style.zIndex=1);
+  let cur=0,z=2;
+  const setSv=i=>{
+    if(i===cur)return;
+    items[cur].classList.remove('on');items[i].classList.add('on');
+    phs[i].classList.remove('on');phs[i].style.zIndex=++z;void phs[i].offsetWidth;phs[i].classList.add('on');
+    const prev=phs[cur];setTimeout(()=>{if(prev!==phs[i])prev.classList.remove('on')},1000);
+    cur=i;
+    document.getElementById('svCap').innerHTML=items[i].dataset.cap;
+    document.getElementById('svNum').textContent=String(i+1).padStart(2,'0')+' / 06';
+  };
+  items.forEach((it,i)=>{it.addEventListener('click',()=>setSv(i));if(matchMedia('(hover:hover)').matches)it.addEventListener('mouseenter',()=>setSv(i))});
+
+  // strip drag + arrows
+  const s=document.getElementById('strip');let down=false,sx=0,sl=0,moved=false;
+  s.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down=true;moved=false;sx=e.clientX;sl=s.scrollLeft});
+  addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-sx;if(Math.abs(dx)>4){moved=true;s.classList.add('drag')}s.scrollLeft=sl-dx});
+  addEventListener('pointerup',()=>{down=false;s.classList.remove('drag')});
+  const step=()=>s.querySelector('.card').offsetWidth+22;
+  document.getElementById('next').onclick=()=>s.scrollBy({left:step(),behavior:'smooth'});
+  document.getElementById('prev').onclick=()=>s.scrollBy({left:-step(),behavior:'smooth'});
+
+  // form
+  const f=document.getElementById('qForm'),msg=document.getElementById('fMsg');
+  const body=()=>{const sv=[...f.querySelectorAll('.chips input:checked')].map(c=>c.value).join(', ');
+    return `Hi Tony, I'd like a free quote.\n\nName: ${f.name.value}\nPhone: ${f.phone.value}\nLocation: ${f.addr.value}\nServices: ${sv||'-'}\n\n${f.msg.value}`};
+  f.addEventListener('submit',e=>{e.preventDefault();location.href=`mailto:tony10isabel@gmail.com?subject=${encodeURIComponent('Free quote request')}&body=${encodeURIComponent(body())}`;msg.textContent='Opening your email app. Thanks! Tony will be in touch.'});
+  document.getElementById('smsBtn').onclick=()=>{location.href=`sms:2103474683?&body=${encodeURIComponent(body())}`;msg.textContent='Opening your messages app.'};
+
+  document.getElementById('yr').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
